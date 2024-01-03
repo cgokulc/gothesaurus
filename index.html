@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HTMX Counter</title>
+    <title>GoThesaurus</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://unpkg.com/htmx.org@1.9.4"
@@ -15,7 +15,7 @@
   <body>
     <div id="content" class="p-4">
         <div id="search" class="flex items-center justify-center p3">
-            <form action="#">
+            <form action="javascript:void(0)">
                 <input hx-target="#main" hx-swap="afterend" hx-post="/word" hx-params="*" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 type="Text" name="search" placeHolder="Search...">
             </form>

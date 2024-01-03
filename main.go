@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
-	"log"
+	//"log"
 	"net/http"
 	"strings"
 
@@ -52,22 +52,35 @@ func serveSearch(w http.ResponseWriter, r *http.Request)  {
     q := r.URL.Query()
     //fmt.Println(r.URL)
     //fmt.Fprintf(w, "%s", q.Get("search"))
-    url_ar := []string{"https://api.api-ninjas.com/v1/thesaurus?word="}
-    fmt.Println(url_ar)
-    url_ar = append(url_ar, q.Get("search"))
-    url := strings.Join(url_ar,"")
-    resp, err := http.Get(url)
-    if err != nil {
-        log.Fatalln(err)
-    }
+    //url_ar := []string{"https://api.api-ninjas.com/v1/thesaurus?word="}
+    //fmt.Println(url_ar)
+    //url_ar = append(url_ar, q.Get("search"))
+    //url := strings.Join(url_ar,"")
+    //req, err := http.NewRequest("Get", url, nil)
+    //if err != nil {
+    //    log.Fatalln(err)
+    //}
+    //req.Header.Set("X-Api-Key", "ACBq6BHaf8YlgW5OJDEgZw==9jTghNt9a2bmfagu")
+    //client := &http.Client{}
+    //resp, err := client.Do(req)
+    //if err != nil {
+    //    log.Fatalln(err)
+    //}
+    url := []string{"https://api.dictionaryapi.dev/api/v2/entries/en/", q.Get("search")}
+    url_s := strings.Join(url, "")
+    resp, err := http.Get(url_s)
     defer resp.Body.Close()
     body, err := ioutil.ReadAll(resp.Body)
-    fmt.Println(string(body))
+    body_s := string(body)
+    fmt.Println(body_s)
     //var res map[string]interface{}
     var res api_json
     err = json.Unmarshal([]byte(body), &res)
     //syn := res["synonyms"]
     //fmt.Println(reflect.TypeOf(syn))
+    if err != nil {
+        fmt.Println(err)
+    }
     fmt.Println(res.Synonyms)
     //parseJson(string(body))
 }
